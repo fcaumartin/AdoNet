@@ -21,14 +21,25 @@ namespace Exercice2
         {
             SqlConnection con = new SqlConnection("server=.; database=PAPYRUS; integrated security=true");
             con.Open();
+            try { 
+                SqlCommand requete = new SqlCommand("select * from fournis where numfou=@numfou", con);
+                requete.Parameters.AddWithValue("@numfou", textBox1.Text);
 
-            SqlCommand requete = new SqlCommand("select * from fournis where numfou=" + textBox1.Text, con);
+                SqlDataReader resultat = requete.ExecuteReader();
 
-            SqlDataReader resultat = requete.ExecuteReader();
-
-            while (resultat.Read())
+                if (resultat.Read())
+                {
+                    textBox2.Text = resultat["nomfou"].ToString();
+                    textBox3.Text = resultat["POSFOU"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Le code fournisseur n'existe pas !!!");
+                }
+            }
+            catch (Exception er)
             {
-                textBox2.Text = resultat["nomfou"].ToString();
+
             }
         }
     }
