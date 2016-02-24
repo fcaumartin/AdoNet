@@ -64,6 +64,12 @@ namespace Exercice3
                     string d = Convert.ToDateTime(resultat["DATCOM"]).ToShortDateString();
                     listBox1.Items.Add(resultat["NUMCOM"].ToString() + " " + d);
 
+
+                    ListViewItem lvi = new ListViewItem(resultat["NUMCOM"].ToString());
+                    lvi.SubItems.Add(d);
+                    lvi.SubItems.Add(resultat["OBSCOM"].ToString());
+                    
+                    listView1.Items.Add(lvi);
                 }
             }
         }
