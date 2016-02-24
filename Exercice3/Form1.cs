@@ -54,6 +54,15 @@ namespace Exercice3
                 }
                 else
                 {
+                    //create proc GetEntCom
+                    //@nomfou varchar(30)
+                    //as
+                    //select*
+                    //from fournis
+                    //join entcom on entcom.numfou = fournis.numfou
+                    //where fournis.nomfou = @nomfou
+
+                    //exec GetEntCom 'MEDICIS'
                     SqlCommand requete = new SqlCommand(@"GetEntCom @nomfou", con);
                     requete.Parameters.AddWithValue("@nomfou", comboBox1.SelectedItem);
                     resultat = requete.ExecuteReader();
