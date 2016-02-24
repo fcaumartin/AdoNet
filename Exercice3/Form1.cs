@@ -30,9 +30,7 @@ namespace Exercice3
             comboBox1.Items.Add("Tous");
             while (resultat.Read())
             {
-
                 comboBox1.Items.Add(resultat["NOMFOU"].ToString());
-
             }
 
         }
@@ -56,9 +54,7 @@ namespace Exercice3
                 }
                 else
                 {
-                    SqlCommand requete = new SqlCommand(@"select * from fournis 
-                                                join entcom on entcom.numfou=fournis.numfou 
-                                                where fournis.nomfou=@nomfou", con);
+                    SqlCommand requete = new SqlCommand(@"GetEntCom @nomfou", con);
                     requete.Parameters.AddWithValue("@nomfou", comboBox1.SelectedItem);
                     resultat = requete.ExecuteReader();
                 }
