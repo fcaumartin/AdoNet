@@ -22,8 +22,8 @@ namespace Exercice2
             SqlConnection con = new SqlConnection("server=.; database=PAPYRUS; integrated security=true");
             con.Open();
             try { 
-                SqlCommand requete = new SqlCommand("select * from fournis where numfou=@numfou", con);
-                requete.Parameters.AddWithValue("@numfou", textBox1.Text);
+                SqlCommand requete = new SqlCommand("select * from fournis where nomfou=@nomfou", con);
+                requete.Parameters.AddWithValue("@nomfou", textBox1.Text);
 
                 SqlDataReader resultat = requete.ExecuteReader();
 
@@ -37,9 +37,9 @@ namespace Exercice2
                     MessageBox.Show("Le code fournisseur n'existe pas !!!");
                 }
             }
-            catch (Exception er)
+            catch (Exception e)
             {
-
+                MessageBox.Show("ARGHHH !!!");
             }
         }
     }
