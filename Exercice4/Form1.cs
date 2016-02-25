@@ -20,20 +20,20 @@ namespace Exercice4
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             SqlConnection con = new SqlConnection("data source=.; initial catalog=PAPYRUS; Trusted_Connection=true");
+            con.Open();
 
+            //SqlCommand req1 = new SqlCommand("select max(numfou)+1 from fournis", con);
 
-            SqlCommand req1 = new SqlCommand("select max(numfou) from fournis", con);
-
-            int numfou = (int)req1.ExecuteScalar();
-            numfou++;
+            //int numfou = (int)req1.ExecuteScalar();
+            //numfou++;
 
             //SqlDataReader res1 = req1.ExecuteReader();
             //res1.Read();
             //int numfou = Convert.ToInt32(res1[0]);
             //res1.Close();
 
-            con.Open();
 
             SqlCommand requete = new SqlCommand();
             requete.CommandText = "insert into FOURNIS (NOMFOU, POSFOU, VILFOU, RUEFOU, CONFOU, SATISF) values (@p1, @p2, @p3, @p4, @p5, @p6)";
@@ -43,7 +43,15 @@ namespace Exercice4
             requete.Parameters.AddWithValue("@p3", textBox3.Text);
             requete.Parameters.AddWithValue("@p4", textBox4.Text);
             requete.Parameters.AddWithValue("@p5", textBox5.Text);
-            requete.Parameters.AddWithValue("@p6", trackBar1.Value);
+            if (trackBar1.Value == 0)
+            {
+                requete.Parameters.AddWithValue("@p6", DBNull.Value);
+            }
+            else
+            {
+                requete.Parameters.AddWithValue("@p6", trackBar1.Value);
+            }
+            
 
             requete.ExecuteNonQuery();
 
