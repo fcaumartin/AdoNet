@@ -33,15 +33,36 @@ namespace PatternDAOexemple
         {
             ClientDAO database = new ClientDAO();
 
-            listBox1.DisplayMember = "Nom";
+            listBox1.DisplayMember = "NomComplet";
             listBox1.DataSource = database.List();
 
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = database.List();
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            comboBox1.DisplayMember = "Nom";
+            comboBox1.ValueMember = "Id";
+            comboBox1.DataSource = database.List();
+
+            //listBox1.SelectedIndex = -1;
+            //comboBox1.SelectedIndex = -1;
+
+            //dataGridView1.DataSource = database.List();
+
+            //dataGridView1.ReadOnly = true;
+            //dataGridView1.RowHeadersVisible = false;
+            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView1.Columns[0].Visible = false;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(comboBox1.SelectedValue);
+            Client c = (Client)comboBox1.SelectedItem;
+            Console.WriteLine(c.Nom);
+            Console.WriteLine(c.Prenom);
         }
     }
 
